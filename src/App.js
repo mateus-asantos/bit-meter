@@ -10,7 +10,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    setInterval(this.getDataRequest, 5000);
+    setInterval(this.getDataRequest, 50000);
   };
 
 
