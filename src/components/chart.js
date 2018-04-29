@@ -1,42 +1,44 @@
 import React from 'react';
 import { Line } from 'react-chartjs-2';
+import './component.css';
 
-const chartOptions = {
-    belzierCurve: false
-};
 
-export class MyChart extends React.Component {
-    
-    render() {
-        const chartData = {
-            labels: ["1", "2", "3", "4", "5", "6", "7"],
-            datasets: [
-                {
-                    label: "VALUES",
-                    fillColor: "rgba(0,0,0,0.0)",
-                    strokeColor: "rgb(0, 251, 29)",
-                    pointColor: "rgb(0, 251, 29)",
-                    pointStrokeColor: "#fff",
-                    pointHighlightFill: "#fff",
-                    pointHighlightStroke: "rgba(220,220,220,1)",
-                    data:this.props.data
-                }
-        
-            ]
-        };
-        
-        console.log('chartData')
-        console.log(chartData)
+export const Chart = (props)=> {
 
-        return (
+
+    const chartData = {
+        labels: props.time,
+        datasets: [
+            {
+                label: "VALUES",
+                fill: false,
+                fillColor: "rgba(0,0,0,0.0)",
+                borderColor: "rgb(0, 251, 29)",
+                pointBackgroundColor: "rgb(0, 251, 29)",
+                pointBorderColor: "#fff",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "rgba(220,220,220,1)",
+                data: props.data
+            }
+
+        ]
+    };
+
+    const chartOptions = {
+        belzierCurve: false
+    };
+
+    console.log('chartData')
+    console.log(chartData)
+
+    return (
+        <div id='Wrapper'>
             <div>
-                <div>
-                    <Line data={chartData} options={chartOptions} width={600} height={250} />
-                </div>
-                <div className='Graph-rect'>
-                    <canvas id='myChart' width={400} height={400}></canvas>
-                </div>
+                <Line data={chartData} options={chartOptions} />
             </div>
-        )
-    }
+            <div className='Graph-rect'>
+                <canvas id='myChart' ></canvas>
+            </div>
+        </div>
+    )
 }
